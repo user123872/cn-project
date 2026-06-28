@@ -1,0 +1,139 @@
+file 5310 1780807277                                            
+version 3
+run General-0-20260607-10:41:09-15452
+attr configname General
+attr datetime 20260607-10:41:09
+attr datetimef 20260607-104109
+attr experiment General
+attr inifile omnetpp.ini
+attr iterationvars ""
+attr iterationvarsd ""
+attr iterationvarsf ""
+attr measurement ""
+attr network tcp_con_control_analysis.TcpVariants
+attr processid 15452
+attr repetition 0
+attr replication #0
+attr resultdir results
+attr runnumber 0
+attr seedset 0
+config image-path ../inet4.5/images
+config network tcp_con_control_analysis.TcpVariants
+config sim-time-limit 20s
+config record-eventlog false
+config **.vector-recording true
+config **.scalar-recording true
+config output-vector-precision 6
+config *.eth[].typename EthernetInterface
+config *.eth[].dataRate 100Mbps
+config *.eth[].queue.typename DropTailQueue
+config *.eth[].queue.frameCapacity 500
+config **.sender.numApps 1
+config **.sender.app[0].typename TcpSessionApp
+config **.sender.app[0].localPort 1000
+config **.sender.app[0].connectAddress "\"receiver\""
+config **.sender.app[0].connectPort 1000
+config **.sender.app[0].tOpen 0s
+config **.sender.app[0].tSend 0s
+config **.sender.app[0].sendBytes 100MiB
+config **.sender.app[0].tClose -1s
+config **.receiver.numApps 1
+config **.receiver.app[0].typename TcpSinkApp
+config **.receiver.app[0].localPort 1000
+config **.trafficGen.numApps 1
+config **.trafficGen.app[0].typename TcpSessionApp
+config **.trafficGen.app[0].localPort 2000
+config **.trafficGen.app[0].connectAddress "\"receiver\""
+config **.trafficGen.app[0].connectPort 2000
+config **.trafficGen.app[0].tOpen 0s
+config **.trafficGen.app[0].tSend 0s
+config **.trafficGen.app[0].sendBytes 50MiB
+config **.trafficGen.app[0].tClose -1s
+config **.sender.hasTcp true
+config **.sender.tcp.typename Tcp
+config **.receiver.hasTcp true
+config **.receiver.tcp.typename Tcp
+config **.tcp.recordStatistics true
+config **.tcp.mss 1460
+config **.throughput:vector.record vector
+config **.throughput:scalar.record avg
+config **.endToEndDelay:vector.record vector
+config **.endToEndDelay:scalar.record avg
+config **.packetLoss:vector.record vector
+config **.packetLoss:scalar.record sum
+config **.cwnd:vector.record vector
+config **.cwnd:scalar.record avg
+config **.rtt:vector.record vector
+config **.rtt:scalar.record avg
+config **.sender.tcp.sentData:vector.record vector
+config **.sender.tcp.rcvdData:vector.record vector
+config **.sender.tcp.cwnd:vector.record vector
+config **.sender.tcp.rtt:vector.record vector
+config **.sender.tcp.packetLoss:vector.record vector
+config **.sender.tcp.sentData:scalar.record sum
+config **.sender.tcp.rcvdData:scalar.record sum
+config **.sender.tcp.cwnd:scalar.record avg
+config **.sender.tcp.rtt:scalar.record avg
+config **.sender.tcp.packetLoss:scalar.record sum
+config **.receiver.tcp.sentData:vector.record vector
+config **.receiver.tcp.rcvdData:vector.record vector
+config **.receiver.tcp.packetLoss:vector.record vector
+config **.receiver.tcp.sentData:scalar.record sum
+config **.receiver.tcp.rcvdData:scalar.record sum
+config **.receiver.tcp.packetLoss:scalar.record sum
+
+vector 0 TcpVariants.sender.udp passedUpPk:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetSentToUpper
+attr title "packets passed up, count"
+vector 1 TcpVariants.sender.udp droppedPkWrongPort:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsNoPortFound(packetDropped)
+attr title "packets dropped (wrong port), count"
+vector 2 TcpVariants.sender.udp droppedPkBadChecksum:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packets dropped (checksum error), count"
+vector 3 TcpVariants.receiver.udp passedUpPk:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetSentToUpper
+attr title "packets passed up, count"
+vector 4 TcpVariants.receiver.udp droppedPkWrongPort:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsNoPortFound(packetDropped)
+attr title "packets dropped (wrong port), count"
+vector 5 TcpVariants.receiver.udp droppedPkBadChecksum:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packets dropped (checksum error), count"
+vector 6 TcpVariants.trafficGen.udp passedUpPk:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetSentToUpper
+attr title "packets passed up, count"
+vector 7 TcpVariants.trafficGen.udp droppedPkWrongPort:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsNoPortFound(packetDropped)
+attr title "packets dropped (wrong port), count"
+vector 8 TcpVariants.trafficGen.udp droppedPkBadChecksum:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packets dropped (checksum error), count"
+0	5227 9 0 0 0 0 1 0 0 0 0
+1	5236 9 0 0 0 0 1 0 0 0 0
+2	5245 9 0 0 0 0 1 0 0 0 0
+3	5254 9 0 0 0 0 1 0 0 0 0
+4	5263 9 0 0 0 0 1 0 0 0 0
+5	5272 9 0 0 0 0 1 0 0 0 0
+6	5281 9 0 0 0 0 1 0 0 0 0
+7	5290 9 0 0 0 0 1 0 0 0 0
+8	5299 9 0 0 0 0 1 0 0 0 0
+
