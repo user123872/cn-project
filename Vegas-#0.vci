@@ -1,0 +1,853 @@
+file 13111029 1780983553                                        
+version 3
+run Vegas-0-20260609-11:36:52-10000
+attr configname Vegas
+attr datetime 20260609-11:36:52
+attr datetimef 20260609-113652
+attr experiment Vegas
+attr inifile omnetpp.ini
+attr iterationvars ""
+attr iterationvarsd ""
+attr iterationvarsf ""
+attr measurement ""
+attr network tcp_con_control_analysis.TcpVariants
+attr processid 10000
+attr repetition 0
+attr replication #0
+attr resultdir results/Vegas
+attr runnumber 0
+attr seedset 0
+config image-path ../inet4.5/images
+config description "TCP Vegas test"
+config result-dir results/Vegas
+config **.sender.tcp.tcpAlgorithmClass "\"TcpVegas\""
+config network tcp_con_control_analysis.TcpVariants
+config sim-time-limit 20s
+config record-eventlog false
+config **.vector-recording true
+config **.scalar-recording true
+config output-vector-precision 6
+config *.eth[].typename EthernetInterface
+config *.eth[].dataRate 100Mbps
+config *.eth[].queue.typename DropTailQueue
+config *.eth[].queue.frameCapacity 500
+config **.sender.numApps 1
+config **.sender.app[0].typename TcpSessionApp
+config **.sender.app[0].localPort 1000
+config **.sender.app[0].connectAddress "\"receiver\""
+config **.sender.app[0].connectPort 1000
+config **.sender.app[0].tOpen 0s
+config **.sender.app[0].tSend 0s
+config **.sender.app[0].sendBytes 100MiB
+config **.sender.app[0].tClose -1s
+config **.receiver.numApps 1
+config **.receiver.app[0].typename TcpSinkApp
+config **.receiver.app[0].localPort 1000
+config **.trafficGen.numApps 1
+config **.trafficGen.app[0].typename TcpSessionApp
+config **.trafficGen.app[0].localPort 2000
+config **.trafficGen.app[0].connectAddress "\"receiver\""
+config **.trafficGen.app[0].connectPort 2000
+config **.trafficGen.app[0].tOpen 0s
+config **.trafficGen.app[0].tSend 0s
+config **.trafficGen.app[0].sendBytes 50MiB
+config **.trafficGen.app[0].tClose -1s
+config **.sender.hasTcp true
+config **.sender.tcp.typename Tcp
+config **.receiver.hasTcp true
+config **.receiver.tcp.typename Tcp
+config **.tcp.recordStatistics true
+config **.tcp.mss 1460
+config **.throughput:vector.record vector
+config **.throughput:scalar.record avg
+config **.endToEndDelay:vector.record vector
+config **.endToEndDelay:scalar.record avg
+config **.packetLoss:vector.record vector
+config **.packetLoss:scalar.record sum
+config **.cwnd:vector.record vector
+config **.cwnd:scalar.record avg
+config **.rtt:vector.record vector
+config **.rtt:scalar.record avg
+config **.sender.tcp.sentData:vector.record vector
+config **.sender.tcp.rcvdData:vector.record vector
+config **.sender.tcp.cwnd:vector.record vector
+config **.sender.tcp.rtt:vector.record vector
+config **.sender.tcp.packetLoss:vector.record vector
+config **.sender.tcp.sentData:scalar.record sum
+config **.sender.tcp.rcvdData:scalar.record sum
+config **.sender.tcp.cwnd:scalar.record avg
+config **.sender.tcp.rtt:scalar.record avg
+config **.sender.tcp.packetLoss:scalar.record sum
+config **.receiver.tcp.sentData:vector.record vector
+config **.receiver.tcp.rcvdData:vector.record vector
+config **.receiver.tcp.packetLoss:vector.record vector
+config **.receiver.tcp.sentData:scalar.record sum
+config **.receiver.tcp.rcvdData:scalar.record sum
+config **.receiver.tcp.packetLoss:scalar.record sum
+
+vector 0 TcpVariants.sender.udp passedUpPk:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetSentToUpper
+attr title "packets passed up, count"
+vector 1 TcpVariants.sender.udp droppedPkWrongPort:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsNoPortFound(packetDropped)
+attr title "packets dropped (wrong port), count"
+vector 2 TcpVariants.sender.udp droppedPkBadChecksum:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packets dropped (checksum error), count"
+vector 3 TcpVariants.receiver.udp passedUpPk:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetSentToUpper
+attr title "packets passed up, count"
+vector 4 TcpVariants.receiver.udp droppedPkWrongPort:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsNoPortFound(packetDropped)
+attr title "packets dropped (wrong port), count"
+vector 5 TcpVariants.receiver.udp droppedPkBadChecksum:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packets dropped (checksum error), count"
+vector 6 TcpVariants.trafficGen.udp passedUpPk:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetSentToUpper
+attr title "packets passed up, count"
+vector 7 TcpVariants.trafficGen.udp droppedPkWrongPort:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsNoPortFound(packetDropped)
+attr title "packets dropped (wrong port), count"
+vector 8 TcpVariants.trafficGen.udp droppedPkBadChecksum:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packets dropped (checksum error), count"
+vector 9 TcpVariants.sender.tcp.conn-3 tcpRcvQueueBytes:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 10 TcpVariants.sender.tcp.conn-3 rcvAdv:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 11 TcpVariants.sender.tcp.conn-3 rcvWnd:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 12 TcpVariants.sender.tcp.conn-3 sndAck:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 13 TcpVariants.trafficGen.tcp.conn-4 tcpRcvQueueBytes:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 14 TcpVariants.trafficGen.tcp.conn-4 rcvAdv:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 15 TcpVariants.trafficGen.tcp.conn-4 rcvWnd:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 16 TcpVariants.trafficGen.tcp.conn-4 sndAck:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 17 TcpVariants.sender.ipv4.arp arpRequestSent:vector(packetBytes) ETV
+attr recordingmode vector(packetBytes)
+attr source arpRequestSent
+attr title "ARP request sent, packetBytes"
+vector 18 TcpVariants.trafficGen.ipv4.arp arpRequestSent:vector(packetBytes) ETV
+attr recordingmode vector(packetBytes)
+attr source arpRequestSent
+attr title "ARP request sent, packetBytes"
+vector 19 TcpVariants.sender.ethernet encapPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source encapPk
+attr title "packets encapsulated, packetBytes"
+vector 20 TcpVariants.trafficGen.ethernet encapPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source encapPk
+attr title "packets encapsulated, packetBytes"
+vector 21 TcpVariants.sender.eth[0].queue incomingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPushStarted)
+attr title "incoming packet lengths"
+attr unit b
+vector 22 TcpVariants.sender.eth[0].queue queueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(packetPulled)
+attr title "queueing times"
+attr unit s
+vector 23 TcpVariants.sender.eth[0].queue outgoingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPulled)
+attr title "outgoing packet lengths"
+attr unit b
+vector 24 TcpVariants.sender.eth[0].mac packetReceivedFromUpper:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceivedFromUpper
+attr title "packet bytes from higher layer, packetBytes"
+vector 25 TcpVariants.sender.eth[0].queue queueLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + count(packetPushStarted) - count(packetPulled) - count(packetRemoved) - count(packetDropped)))"
+attr title "queue length"
+attr unit pk
+vector 26 TcpVariants.sender.eth[0].queue queueBitLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + sum(packetLength(packetPushStarted)) - sum(packetLength(packetPulled)) - sum(packetLength(packetRemoved)) - sum(packetLength(packetDropped))))"
+attr title "queue bit length"
+attr unit b
+vector 27 TcpVariants.trafficGen.eth[0].queue incomingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPushStarted)
+attr title "incoming packet lengths"
+attr unit b
+vector 28 TcpVariants.trafficGen.eth[0].queue queueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(packetPulled)
+attr title "queueing times"
+attr unit s
+vector 29 TcpVariants.trafficGen.eth[0].queue outgoingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPulled)
+attr title "outgoing packet lengths"
+attr unit b
+vector 30 TcpVariants.trafficGen.eth[0].mac packetReceivedFromUpper:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceivedFromUpper
+attr title "packet bytes from higher layer, packetBytes"
+vector 31 TcpVariants.trafficGen.eth[0].queue queueLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + count(packetPushStarted) - count(packetPulled) - count(packetRemoved) - count(packetDropped)))"
+attr title "queue length"
+attr unit pk
+vector 32 TcpVariants.trafficGen.eth[0].queue queueBitLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + sum(packetLength(packetPushStarted)) - sum(packetLength(packetPulled)) - sum(packetLength(packetRemoved)) - sum(packetLength(packetDropped))))"
+attr title "queue bit length"
+attr unit b
+vector 33 TcpVariants.sender.eth[0].mac txPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSentToLower
+attr title "packets transmitted, packetBytes"
+vector 34 TcpVariants.trafficGen.eth[0].mac txPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSentToLower
+attr title "packets transmitted, packetBytes"
+vector 35 TcpVariants.router.eth[0].mac rxPkOk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source rxPkOk
+attr title "packets received OK, packetBytes"
+vector 36 TcpVariants.router.eth[0].mac passedUpPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSentToUpper
+attr title "packets passed to higher layer, packetBytes"
+vector 37 TcpVariants.router.eth[2].mac rxPkOk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source rxPkOk
+attr title "packets received OK, packetBytes"
+vector 38 TcpVariants.router.eth[2].mac passedUpPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSentToUpper
+attr title "packets passed to higher layer, packetBytes"
+vector 39 TcpVariants.router.ethernet decapPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source decapPk
+attr title "packets decapsulated, packetBytes"
+vector 40 TcpVariants.router.ipv4.arp arpReplySent:vector(packetBytes) ETV
+attr recordingmode vector(packetBytes)
+attr source arpReplySent
+attr title "ARP replies sent, packetBytes"
+vector 41 TcpVariants.router.ethernet encapPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source encapPk
+attr title "packets encapsulated, packetBytes"
+vector 42 TcpVariants.router.eth[0].queue incomingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPushStarted)
+attr title "incoming packet lengths"
+attr unit b
+vector 43 TcpVariants.router.eth[0].queue queueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(packetPulled)
+attr title "queueing times"
+attr unit s
+vector 44 TcpVariants.router.eth[0].queue outgoingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPulled)
+attr title "outgoing packet lengths"
+attr unit b
+vector 45 TcpVariants.router.eth[0].mac packetReceivedFromUpper:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceivedFromUpper
+attr title "packet bytes from higher layer, packetBytes"
+vector 46 TcpVariants.router.eth[0].queue queueLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + count(packetPushStarted) - count(packetPulled) - count(packetRemoved) - count(packetDropped)))"
+attr title "queue length"
+attr unit pk
+vector 47 TcpVariants.router.eth[0].queue queueBitLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + sum(packetLength(packetPushStarted)) - sum(packetLength(packetPulled)) - sum(packetLength(packetRemoved)) - sum(packetLength(packetDropped))))"
+attr title "queue bit length"
+attr unit b
+vector 48 TcpVariants.router.eth[2].queue incomingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPushStarted)
+attr title "incoming packet lengths"
+attr unit b
+vector 49 TcpVariants.router.eth[2].queue queueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(packetPulled)
+attr title "queueing times"
+attr unit s
+vector 50 TcpVariants.router.eth[2].queue outgoingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPulled)
+attr title "outgoing packet lengths"
+attr unit b
+vector 51 TcpVariants.router.eth[2].mac packetReceivedFromUpper:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceivedFromUpper
+attr title "packet bytes from higher layer, packetBytes"
+vector 52 TcpVariants.router.eth[2].queue queueLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + count(packetPushStarted) - count(packetPulled) - count(packetRemoved) - count(packetDropped)))"
+attr title "queue length"
+attr unit pk
+vector 53 TcpVariants.router.eth[2].queue queueBitLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + sum(packetLength(packetPushStarted)) - sum(packetLength(packetPulled)) - sum(packetLength(packetRemoved)) - sum(packetLength(packetDropped))))"
+attr title "queue bit length"
+attr unit b
+vector 54 TcpVariants.router.eth[0].mac txPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSentToLower
+attr title "packets transmitted, packetBytes"
+vector 55 TcpVariants.router.eth[2].mac txPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSentToLower
+attr title "packets transmitted, packetBytes"
+vector 56 TcpVariants.sender.eth[0].mac rxPkOk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source rxPkOk
+attr title "packets received OK, packetBytes"
+vector 57 TcpVariants.sender.eth[0].mac passedUpPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSentToUpper
+attr title "packets passed to higher layer, packetBytes"
+vector 58 TcpVariants.trafficGen.eth[0].mac rxPkOk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source rxPkOk
+attr title "packets received OK, packetBytes"
+vector 59 TcpVariants.trafficGen.eth[0].mac passedUpPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSentToUpper
+attr title "packets passed to higher layer, packetBytes"
+vector 60 TcpVariants.sender.ethernet decapPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source decapPk
+attr title "packets decapsulated, packetBytes"
+vector 61 TcpVariants.trafficGen.ethernet decapPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source decapPk
+attr title "packets decapsulated, packetBytes"
+vector 62 TcpVariants.router.ipv4.arp arpRequestSent:vector(packetBytes) ETV
+attr recordingmode vector(packetBytes)
+attr source arpRequestSent
+attr title "ARP request sent, packetBytes"
+vector 63 TcpVariants.router.eth[1].queue incomingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPushStarted)
+attr title "incoming packet lengths"
+attr unit b
+vector 64 TcpVariants.router.eth[1].queue queueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(packetPulled)
+attr title "queueing times"
+attr unit s
+vector 65 TcpVariants.router.eth[1].queue outgoingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPulled)
+attr title "outgoing packet lengths"
+attr unit b
+vector 66 TcpVariants.router.eth[1].mac packetReceivedFromUpper:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceivedFromUpper
+attr title "packet bytes from higher layer, packetBytes"
+vector 67 TcpVariants.router.eth[1].queue queueLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + count(packetPushStarted) - count(packetPulled) - count(packetRemoved) - count(packetDropped)))"
+attr title "queue length"
+attr unit pk
+vector 68 TcpVariants.router.eth[1].queue queueBitLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + sum(packetLength(packetPushStarted)) - sum(packetLength(packetPulled)) - sum(packetLength(packetRemoved)) - sum(packetLength(packetDropped))))"
+attr title "queue bit length"
+attr unit b
+vector 69 TcpVariants.router.eth[1].mac txPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSentToLower
+attr title "packets transmitted, packetBytes"
+vector 70 TcpVariants.receiver.eth[0].mac rxPkOk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source rxPkOk
+attr title "packets received OK, packetBytes"
+vector 71 TcpVariants.receiver.eth[0].mac passedUpPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSentToUpper
+attr title "packets passed to higher layer, packetBytes"
+vector 72 TcpVariants.receiver.ethernet decapPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source decapPk
+attr title "packets decapsulated, packetBytes"
+vector 73 TcpVariants.receiver.ipv4.arp arpReplySent:vector(packetBytes) ETV
+attr recordingmode vector(packetBytes)
+attr source arpReplySent
+attr title "ARP replies sent, packetBytes"
+vector 74 TcpVariants.receiver.ethernet encapPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source encapPk
+attr title "packets encapsulated, packetBytes"
+vector 75 TcpVariants.receiver.eth[0].queue incomingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPushStarted)
+attr title "incoming packet lengths"
+attr unit b
+vector 76 TcpVariants.receiver.eth[0].queue queueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(packetPulled)
+attr title "queueing times"
+attr unit s
+vector 77 TcpVariants.receiver.eth[0].queue outgoingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPulled)
+attr title "outgoing packet lengths"
+attr unit b
+vector 78 TcpVariants.receiver.eth[0].mac packetReceivedFromUpper:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceivedFromUpper
+attr title "packet bytes from higher layer, packetBytes"
+vector 79 TcpVariants.receiver.eth[0].queue queueLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + count(packetPushStarted) - count(packetPulled) - count(packetRemoved) - count(packetDropped)))"
+attr title "queue length"
+attr unit pk
+vector 80 TcpVariants.receiver.eth[0].queue queueBitLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + sum(packetLength(packetPushStarted)) - sum(packetLength(packetPulled)) - sum(packetLength(packetRemoved)) - sum(packetLength(packetDropped))))"
+attr title "queue bit length"
+attr unit b
+vector 81 TcpVariants.receiver.eth[0].mac txPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSentToLower
+attr title "packets transmitted, packetBytes"
+vector 82 TcpVariants.router.eth[1].mac rxPkOk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source rxPkOk
+attr title "packets received OK, packetBytes"
+vector 83 TcpVariants.router.eth[1].mac passedUpPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSentToUpper
+attr title "packets passed to higher layer, packetBytes"
+vector 84 TcpVariants.receiver.tcp.conn-1 rcvSeq:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 85 TcpVariants.receiver.tcp.conn-1 rcvAck:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 86 TcpVariants.receiver.tcp.conn-1 tcpRcvPayloadBytes:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 87 TcpVariants.receiver.tcp.conn-5 rcvAdv:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 88 TcpVariants.receiver.tcp.conn-5 sndWnd:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 89 TcpVariants.receiver.tcp.conn-5 tcpRcvQueueBytes:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 90 TcpVariants.receiver.tcp.conn-5 rcvWnd:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 91 TcpVariants.receiver.tcp.conn-5 sndAck:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 92 TcpVariants.sender.tcp.conn-3 rcvSeq:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 93 TcpVariants.sender.tcp.conn-3 rcvAck:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 94 TcpVariants.sender.tcp.conn-3 tcpRcvPayloadBytes:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 95 TcpVariants.sender.tcp.conn-3 sndWnd:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 96 TcpVariants.sender.app[0] packetSent:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSent
+attr title "packets sent, packetBytes"
+vector 97 TcpVariants.sender.tcp.conn-3 sndNxt:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 98 TcpVariants.sender.tcp.conn-3 unacked:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 99 TcpVariants.trafficGen.tcp.conn-4 rcvSeq:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 100 TcpVariants.trafficGen.tcp.conn-4 rcvAck:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 101 TcpVariants.trafficGen.tcp.conn-4 tcpRcvPayloadBytes:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+101	25361 21 124 124 0.0800528 0.0800528 1 0 0 0 0
+13	25382 10 5 5 0 0 1 0 0 0 0
+100	25392 21 124 124 0.0800528 0.0800528 1 1 1 1 1
+99	25413 20 124 124 0.0800528 0.0800528 1 0 0 0 0
+16	25433 10 5 5 0 0 1 0 0 0 0
+14	25443 14 5 5 0 0 1 20440 20440 20440 4.17794e+08
+15	25457 14 5 5 0 0 1 20440 20440 20440 4.17794e+08
+vector 102 TcpVariants.receiver.tcp.conn-5 rcvSeq:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 103 TcpVariants.receiver.tcp.conn-5 rcvAck:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 104 TcpVariants.receiver.tcp.conn-5 tcpRcvPayloadBytes:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 105 TcpVariants.receiver.tcp.conn-5 unacked:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 106 TcpVariants.receiver.tcp.conn-5 dupAcks:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 107 TcpVariants.receiver.app[0].thread_5 packetReceived:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceived
+attr title "packets received, packetBytes"
+vector 108 TcpVariants.receiver.app[0].thread_5 endToEndDelay:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source dataAge(packetReceived)
+attr title "end-to-end delay"
+attr unit s
+vector 109 TcpVariants.receiver.app[0] packetReceived:vector(packetBytes) ETV
+attr checkSignals false
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceived
+attr title "packets received, packetBytes"
+vector 110 TcpVariants.receiver.app[0] endToEndDelay:vector ETV
+attr checkSignals false
+attr interpolationmode none
+attr recordingmode vector
+attr source dataAge(packetReceived)
+attr title "end-to-end delay"
+attr unit s
+vector 111 TcpVariants.receiver.eth[0].queue incomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPushStarted)
+attr title "incoming datarate"
+attr unit bps
+vector 112 TcpVariants.receiver.eth[0].queue outgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPulled)
+attr title "outgoing datarate"
+attr unit bps
+vector 113 TcpVariants.router.eth[0].queue incomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPushStarted)
+attr title "incoming datarate"
+attr unit bps
+vector 114 TcpVariants.router.eth[0].queue outgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPulled)
+attr title "outgoing datarate"
+attr unit bps
+vector 115 TcpVariants.sender.tcp.conn-3 rtt:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 116 TcpVariants rtt:vector ETV
+attr recordingmode vector
+attr title "Round-Trip Time"
+attr unit s
+vector 117 TcpVariants.sender.tcp.conn-3 srtt:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 118 TcpVariants.sender.tcp.conn-3 rttvar:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 119 TcpVariants.sender.tcp.conn-3 rto:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 120 TcpVariants.sender.tcp.conn-3 dupAcks:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 121 TcpVariants.sender.eth[0].queue incomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPushStarted)
+attr title "incoming datarate"
+attr unit bps
+vector 122 TcpVariants.sender.eth[0].queue outgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPulled)
+attr title "outgoing datarate"
+attr unit bps
+vector 123 TcpVariants.router.eth[1].queue incomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPushStarted)
+attr title "incoming datarate"
+attr unit bps
+vector 124 TcpVariants.router.eth[1].queue outgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPulled)
+attr title "outgoing datarate"
+attr unit bps
+vector 125 TcpVariants.sender.tcp.conn-3 cwnd:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 126 TcpVariants cwnd:vector ETV
+attr recordingmode vector
+attr title "Congestion Window Size"
+attr unit bytes
+vector 127 TcpVariants.router.eth[2].queue outgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPulled)
+attr title "outgoing datarate"
+attr unit bps
+vector 128 TcpVariants.router.eth[2].queue incomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPushStarted)
+attr title "incoming datarate"
+attr unit bps
+108	30160 210224 154 225962 0.10029696 19.9882024 6848 0.0202509 19.9082 69040.5 917351
+107	240384 190173 154 225962 0.10029696 19.9882024 6848 1460 1460 9.99808e+06 1.45972e+10
+vector 129 TcpVariants.trafficGen.eth[0].queue outgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPulled)
+attr title "outgoing datarate"
+attr unit bps
+vector 130 TcpVariants.trafficGen.eth[0].queue incomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPushStarted)
+attr title "incoming datarate"
+attr unit bps
+0	431000 9 0 0 0 0 1 0 0 0 0
+1	431009 9 0 0 0 0 1 0 0 0 0
+2	431018 9 0 0 0 0 1 0 0 0 0
+3	431027 9 0 0 0 0 1 0 0 0 0
+4	431036 9 0 0 0 0 1 0 0 0 0
+5	431045 9 0 0 0 0 1 0 0 0 0
+6	431054 9 0 0 0 0 1 0 0 0 0
+7	431063 9 0 0 0 0 1 0 0 0 0
+8	431072 9 0 0 0 0 1 0 0 0 0
+9	431081 155920 4 225724 0 19.96795824 6850 0 0 0 0
+10	587001 190195 4 225724 0 19.96795824 6851 20440 35449 2.42846e+08 8.60834e+12
+11	777196 190170 4 225724 0 19.96795824 6850 20440 20440 1.40014e+08 2.86189e+12
+12	967366 190166 4 225724 0 19.96795824 6850 0 15009 1.02797e+08 1.54287e+12
+17	1157532 11 6 6 0 0 1 28 28 28 784
+18	1157543 11 7 7 0 0 1 28 28 28 784
+19	1157554 183337 8 225726 0 19.96795824 6851 28 1500 1.02721e+07 1.5408e+10
+20	1340891 32 9 37 0 0.02001152 2 28 44 72 2720
+21	1340923 190190 10 225727 0 19.96795824 6851 368 12144 8.31634e+07 1.00992e+12
+22	1531113 163012 10 225727 0 19.96795824 6851 0 0.00073824 0.00849648 4.07239e-06
+23	1694125 190189 10 225727 0 19.96795824 6851 368 12144 8.31634e+07 1.00992e+12
+24	1884314 183338 10 225727 0 19.96795824 6851 46 1518 1.03954e+07 1.578e+10
+25	2067652 163323 10 225727 0 19.96795824 6876 0 6 115 425
+26	2230975 163491 10 225727 0 19.96795824 6876 0 72864 1.39656e+06 6.26776e+10
+27	2394466 35 11 39 0 0.02001152 2 368 496 864 381440
+28	2394501 31 11 39 0 0.02001152 2 0 0 0 0
+29	2394532 35 11 39 0 0.02001152 2 368 496 864 381440
+30	2394567 33 11 39 0 0.02001152 2 46 62 108 5960
+31	2394600 31 11 39 0 0.02001152 2 0 0 0 0
+32	2394631 31 11 39 0 0.02001152 2 0 0 0 0
+33	2394662 183354 12 225728 0.00000576 19.96808032 6851 64 1518 1.03955e+07 1.578e+10
+34	2578016 42 13 41 0.00000576 0.02001728 2 64 64 128 8192
+35	2578058 183370 16 225820 0.01000576 19.97808032 6851 64 1518 1.03955e+07 1.578e+10
+36	2761428 183370 16 225820 0.01000576 19.97808032 6851 64 1518 1.03955e+07 1.578e+10
+37	2944798 42 17 45 0.01000576 0.03001728 2 64 64 128 8192
+38	2944840 42 17 45 0.01000576 0.03001728 2 64 64 128 8192
+39	2944882 353106 18 226060 0.01000576 19.99820816 13704 46 1500 1.05874e+07 1.54225e+10
+40	3297988 42 20 21 0.01000576 0.01000576 2 28 28 56 1568
+41	3298030 353107 22 226062 0.01000576 19.99820816 13704 28 1500 1.05462e+07 1.5419e+10
+42	3651137 176524 24 226063 0.01000576 19.99820816 6850 368 496 3.17834e+06 1.47473e+09
+43	3827661 162824 24 226063 0.01000576 19.99820816 6850 0 0 0 0
+44	3990485 176524 24 226063 0.01000576 19.99820816 6850 368 496 3.17834e+06 1.47473e+09
+45	4167009 169674 24 226063 0.01000576 19.99820816 6850 46 62 397292 2.30426e+07
+46	4336683 162824 24 226063 0.01000576 19.99820816 6850 0 0 0 0
+47	4499507 162824 24 226063 0.01000576 19.99820816 6850 0 0 0 0
+48	4662331 45 25 101 0.01000576 0.07004704 2 368 464 832 350720
+49	4662376 41 25 101 0.01000576 0.07004704 2 0 0 0 0
+50	4662417 45 25 101 0.01000576 0.07004704 2 368 464 832 350720
+51	4662462 43 25 101 0.01000576 0.07004704 2 46 58 104 5480
+52	4662505 41 25 101 0.01000576 0.07004704 2 0 0 0 0
+53	4662546 41 25 101 0.01000576 0.07004704 2 0 0 0 0
+54	4662587 169672 26 226064 0.01001152 19.99821392 6850 64 64 438400 2.80576e+07
+55	4832259 42 27 102 0.01001152 0.0700528 2 64 64 128 8192
+56	4832301 169319 30 225720 0.02001152 19.96795824 6836 64 64 437504 2.80003e+07
+57	5001620 169319 30 225720 0.02001152 19.96795824 6836 64 64 437504 2.80003e+07
+58	5170939 42 31 120 0.02001152 0.0800528 2 64 64 128 8192
+59	5170981 42 31 120 0.02001152 0.0800528 2 64 64 128 8192
+60	5171023 169319 32 225722 0.02001152 19.96795824 6836 46 46 314456 1.4465e+07
+61	5340342 42 33 122 0.02001152 0.0800528 2 46 46 92 4232
+62	5340384 21 48 48 0.03001728 0.03001728 1 28 28 28 784
+63	5340405 190242 51 225825 0.03001728 19.97808032 6852 368 12144 8.31639e+07 1.00992e+12
+64	5530647 162850 51 225825 0.03001728 19.97808032 6852 0 6.72e-06 6.72e-06 4.51584e-11
+65	5693497 190243 51 225825 0.03001728 19.97808032 6852 368 12144 8.31639e+07 1.00992e+12
+66	5883740 183391 51 225825 0.03001728 19.97808032 6852 46 1518 1.03955e+07 1.578e+10
+67	6067131 162862 51 225825 0.03001728 19.97808032 6853 0 1 1 1
+68	6229993 162864 51 225825 0.03001728 19.97808032 6853 0 496 496 246016
+69	6392857 183388 52 225826 0.03002304 19.9782024 6852 64 1518 1.03955e+07 1.578e+10
+70	6576245 183409 54 225958 0.04002304 19.9882024 6852 64 1518 1.03955e+07 1.578e+10
+71	6759654 183409 54 225958 0.04002304 19.9882024 6852 64 1518 1.03955e+07 1.578e+10
+72	6943063 183409 55 225959 0.04002304 19.9882024 6852 46 1500 1.02722e+07 1.5408e+10
+73	7126472 21 56 56 0.04002304 0.04002304 1 28 28 28 784
+74	7126493 169692 57 225964 0.04002304 19.9882024 6851 28 44 274032 1.09611e+07
+75	7296185 176543 58 225965 0.04002304 19.9882024 6851 368 496 3.1788e+06 1.47494e+09
+76	7472728 162841 58 225965 0.04002304 19.9882024 6851 0 0 0 0
+77	7635569 176543 58 225965 0.04002304 19.9882024 6851 368 496 3.1788e+06 1.47494e+09
+78	7812112 169692 58 225965 0.04002304 19.9882024 6851 46 62 397350 2.3046e+07
+79	7981804 162841 58 225965 0.04002304 19.9882024 6851 0 0 0 0
+80	8144645 162841 58 225965 0.04002304 19.9882024 6851 0 0 0 0
+81	8307486 169690 59 225966 0.0400288 19.98820816 6851 64 64 438464 2.80617e+07
+82	8477176 169694 61 226059 0.0500288 19.99820816 6851 64 64 438464 2.80617e+07
+83	8646870 169694 61 226059 0.0500288 19.99820816 6851 64 64 438464 2.80617e+07
+84	8816564 20 75 75 0.06003456 0.06003456 1 0 0 0 0
+85	8816584 20 75 75 0.06003456 0.06003456 1 0 0 0 0
+86	8816604 20 75 75 0.06003456 0.06003456 1 0 0 0 0
+87	8816624 226535 75 225961 0.06003456 19.9882024 6850 20441 1.00185e+07 3.43784e+10 2.29632e+17
+88	9043159 48 75 146 0.06003456 0.1000576 2 20440 20440 40880 8.35587e+08
+89	9043207 325582 75 225961 0.06003456 19.9882024 13697 0 0 0 0
+90	9368789 190197 75 225961 0.06003456 19.9882024 6849 20440 20440 1.39994e+08 2.86147e+12
+91	9558986 226418 75 225961 0.06003456 19.9882024 6849 1 9.99808e+06 3.42384e+10 2.28229e+17
+92	9785404 189803 107 225724 0.08004608 19.96795824 6835 15008 15009 1.02587e+08 1.53972e+12
+93	9975207 225943 107 225724 0.08004608 19.96795824 6835 1 9.97764e+06 3.40986e+10 2.26832e+17
+94	10201150 162463 107 225724 0.08004608 19.96795824 6835 0 0 0 0
+95	10363613 189803 107 225724 0.08004608 19.96795824 6835 20440 20440 1.39707e+08 2.85562e+12
+96	10553416 31 111 111 0.08004608 0.08004608 1 1.04858e+08 1.04858e+08 1.04858e+08 1.09951e+16
+97	10553447 226346 113 225724 0.08004608 19.96795824 6848 1 9.99662e+06 3.42284e+10 2.28129e+17
+98	10779793 379548 113 225724 0.08004608 19.96795824 13669 0 20440 2.68786e+08 5.30101e+12
+102	11159341 233257 146 225961 0.1000576 19.9882024 6849 1 9.99662e+06 3.42284e+10 2.28129e+17
+103	11392598 197046 146 225961 0.1000576 19.9882024 6849 15009 15009 1.02797e+08 1.54287e+12
+104	11589644 190194 146 225961 0.1000576 19.9882024 6849 0 1460 9.99808e+06 1.45972e+10
+105	11779838 21 146 146 0.1000576 0.1000576 1 0 0 0 0
+106	11779859 169629 153 225961 0.10029696 19.9882024 6848 0 0 0 0
+109	11949488 190173 154 225962 0.10029696 19.9882024 6848 1460 1460 9.99808e+06 1.45972e+10
+110	12139661 210224 154 225962 0.10029696 19.9882024 6848 0.0202509 19.9082 69040.5 917351
+111	12349885 4554 157 226066 0.1 20 200 13280 194880 3.1788e+07 5.3117e+12
+112	12354439 4554 157 226066 0.1 20 200 13280 194880 3.1788e+07 5.3117e+12
+113	12358993 4552 164 226066 0.1 20 200 8640 194880 3.17834e+07 5.31169e+12
+114	12363545 4552 164 226066 0.1 20 200 8640 194880 3.17834e+07 5.31169e+12
+115	12368097 16171 170 225607 0.12030848 19.96635872 494 0.0402557 0.0402624 19.8863 0.800537
+116	12384268 16171 170 225607 0.12030848 19.96635872 494 0.0402557 0.0402624 19.8863 0.800537
+117	12400439 16162 170 225607 0.12030848 19.96635872 494 0.0050328 0.0402557 19.6045 0.783143
+118	12416601 15061 170 225607 0.12030848 19.96635872 494 7e-12 0.661283 5.57205 1.96121
+119	12431662 12267 170 225607 0.12030848 19.96635872 494 1 2.65016 500.324 513.654
+120	12443929 169276 170 225724 0.12030848 19.96795824 6834 0 0 0 0
+121	12613205 5540 173 226066 0.1 20 200 134720 5.10048e+06 8.31634e+08 3.63678e+15
+122	12618745 5540 173 226066 0.1 20 200 134720 5.10048e+06 8.31634e+08 3.63678e+15
+123	12624285 5543 180 226066 0.1 20 200 139680 5.10048e+06 8.31639e+08 3.63696e+15
+124	12629828 5543 180 226066 0.1 20 200 139680 5.10048e+06 8.31639e+08 3.63696e+15
+125	12635371 230500 203 225724 0.16056416 19.96795824 6764 2920 9.8769e+06 3.34136e+10 2.20031e+17
+126	12865871 230500 203 225724 0.16056416 19.96795824 6764 2920 9.8769e+06 3.34136e+10 2.20031e+17
+127	13096371 3664 226066 226066 0.1 20 200 0 8320 8320 6.92224e+07
+128	13100035 3664 226066 226066 0.1 20 200 0 8320 8320 6.92224e+07
+129	13103699 3664 226066 226066 0.1 20 200 0 8640 8640 7.46496e+07
+130	13107363 3664 226066 226066 0.1 20 200 0 8640 8640 7.46496e+07
+
