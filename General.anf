@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<analysis version="2">
+    <inputs>
+        <input pattern="/TCP_con_control_analysis/results/General-*.vec"/>
+        <input pattern="/TCP_con_control_analysis/results/General-*.sca"/>
+    </inputs>
+    <charts/>
+</analysis>
